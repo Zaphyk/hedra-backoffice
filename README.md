@@ -23,7 +23,7 @@ backoffice used for managing [Project Hedra](https://luaek.com/projecthedra)
 
 * HTML 5
 * JQuery 3.1.1
-* Boostrap 4
+* Bootstrap 4
 * CSS 3
 * Chart.js
 
