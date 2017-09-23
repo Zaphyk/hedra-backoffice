@@ -3,10 +3,12 @@ backoffice used for managing [Project Hedra](https://luaek.com/projecthedra)
 
 ## technologies used
 	
-	###backend:
+	### backend:
+	
 	* 
 
-	###frontend:
+	### frontend:
+
 	* 
 
 ##screenshots
