@@ -1,0 +1,37 @@
+.stats-circle{
+	height: auto;
+	margin: auto;
+	position: relative;
+	text-align: center;
+}
+
+.stats-text{
+	position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0px;
+    margin:auto;
+    height: 130px;
+    color: white;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.stats-text-big{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0px;
+    margin:auto;
+    height: 100px;
+    color: white;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.rounded-image{
+
+
+}

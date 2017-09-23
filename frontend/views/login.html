@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../images/icon.ico">
+<!-- Bootstrap core CSS -->
+<link href="../stylesheets/bootstrap.min.css" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="../stylesheets/dashboard.css" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Log in</title>
+  <link href="../stylesheets/signin.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+  <div class="container">
+	<div class="form-signin">
+      <h2 class="form-signin-heading">Please sign in</h2>
+      <label for="user" class="sr-only">Username</label>
+      <input type="text" id="user" class="form-control" placeholder="Username" required="" autofocus>
+      <label for="password" class="sr-only">Password</label>
+      <input type="password" id="password" class="form-control" placeholder="Password" required="">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" onclick="login()" style="">
+      <i id="loading" class="fa fa-refresh refresh-animate" style="display:none;"></i> Sign in</button>
+	 	<br>
+        <div class="alert alert-danger" style="display:none;" role="alert" id="error">
+
+		</div> 
+     </div>
+  </div>
+ <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script type="application/javascript">
+  	function login(){
+		if(document.getElementById("user").value == "" || document.getElementById("password").value == ""){
+			document.getElementById("error").style = "";
+			document.getElementById("error").innerHTML = "<strong>Error:</strong> Please enter a valid username or password.";
+			return;
+		}
+		document.getElementById("loading").style = "display:inline-block;";
+		$.get("https://hedra-account-system.herokuapp.com/request?type=login&user="+document.getElementById("user").value+"&password="+document.getElementById("password").value, function (data) {
+        	
+			var success = JSON.parse(data);
+			
+			if(success != "false" ){
+
+        Cookies.set("token", success.token, { expires: 30 });
+        Cookies.set("user", success.user, { expires: 30 });
+				document.getElementById("error").style = "display:none";
+				window.location.href =  "dashboard.html";
+			
+			}else{
+				document.getElementById("error").style = "";
+				document.getElementById("error").innerHTML = "<strong>Error:</strong> Username or pasword does not match.";
+				document.getElementById("loading").style = "display:none;";
+			}
+      	});
+
+	}
+  </script>
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="../stylesheets/ie10-viewport-bug-workaround.js"></script>
+  <script src="./js-cookie.js"></script>
+
+<script type="text/javascript">
+    $('a[href*="#"]')
+    // Remove links that don't actually link to anything
+    .not('[href="#"]')
+    .not('[href="#0"]')
+    .click(function(event) {
+      // On-page links
+      if (
+        location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+        && 
+        location.hostname == this.hostname
+      ) {
+        // Figure out element to scroll to
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+        // Does a scroll target exist?
+        if (target.length) {
+          // Only prevent default if animation is actually gonna happen
+          event.preventDefault();
+          $('html, body').animate({
+            scrollTop: target.offset().top
+          }, 1000, function() {
+            // Callback after animation
+            // Must change focus!
+            var $target = $(target);
+            $target.focus();
+            if ($target.is(":focus")) { // Checking if the target was focused
+              return false;
+            } else {
+              $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+              $target.focus(); // Set focus again
+            };
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+
