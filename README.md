@@ -3,11 +3,11 @@ backoffice used for managing [Project Hedra](https://luaek.com/projecthedra)
 
 ## features
 
-* Login System with token authentication (Completed)
-* Analytics API to collect information (Completed)
-* Insightful stadistics of colleted data (WIP)
-* Edit game patch notes ( Not Yet)
-* Upload new game versions to the cloud (Not Yet)
+* Login System with token authentication ( Completed )
+* Analytics API to collect information ( Completed )
+* Insightful stadistics of colleted data ( WIP )
+* Editing game patch notes ( Not Yet )
+* Upload new game versions to the cloud (Not Yet )
 
 ## technologies used
 	
