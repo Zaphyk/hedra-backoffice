@@ -55,19 +55,23 @@ function Update(){
     var reports;
     $(document).ready(function () {
 
-      $.get("https://hedra-account-system.herokuapp.com/request?type=retrieve&retrievetype=bugs&token="+Cookies.get("token")+"&user="+Cookies.get("user"), function (data) {
-      	if( !(JSON.parse('[' + data + ']') == false) ){
-       		reports = JSON.parse('[' + data + ']');
-        	//LoadToBugsGraph();
-        }
-      });
-
-      $.get("https://hedra-account-system.herokuapp.com/request?type=retrieve&retrievetype=hardware&token="+Cookies.get("token")+"&user="+Cookies.get("user"), function (data) {
-      	if( !(JSON.parse('[' + data + ']') == false) ){
-        	LoadHardwareData(JSON.parse('[' + data + ']'));
-        }
-      });
-
+		if(!testMode){
+			  $.get("https://hedra-account-system.herokuapp.com/request?type=retrieve&retrievetype=bugs&token="+Cookies.get("token")+"&user="+Cookies.get("user"), function (data) {
+				if( !(JSON.parse('[' + data + ']') == false) ){
+					reports = JSON.parse('[' + data + ']');
+					//LoadToBugsGraph();
+				}
+			  });
+		
+			  $.get("https://hedra-account-system.herokuapp.com/request?type=retrieve&retrievetype=hardware&token="+Cookies.get("token")+"&user="+Cookies.get("user"), function (data) {
+				if( !(JSON.parse('[' + data + ']') == false) ){
+					LoadHardwareData(JSON.parse('[' + data + ']'));
+				}
+			  });
+		}else{
+			var testData = '[ "intel i5 | nvidia gtx 980 | 8", "intel i7 | nvidia gtx 680 | 8", "intel atom | amd radeon | 8", "amd athlon | nvidia gtx 980 | 8", "intel pentium | amd  | 8", "intel i5 | ati | 8"]';
+			LoadHardwareData(JSON.parse(testData));
+		}
 	});
 
 

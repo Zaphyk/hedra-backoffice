@@ -4,17 +4,29 @@
 
       function UpdateGraphs(){
 
-          $.get("https://hedra-account-system.herokuapp.com/request?type=retrieve&retrievetype=basic&token="+Cookies.get("token")+"&user="+Cookies.get("user"), function (data) {
-            if( !(JSON.parse("["+data+"]") == false) ){
-              LoadData(data);
-              LoadPlaytimeGraph(data);
-    		    }
-          });
+		$(document).ready(function () {
+			if(!testMode){
+				  $.get("https://hedra-account-system.herokuapp.com/request?type=retrieve&retrievetype=basic&token="+Cookies.get("token")+"&user="+Cookies.get("user"), function (data) {
+					if( !(JSON.parse("["+data+"]") == false) ){
+					  LoadData(data);
+					  LoadPlaytimeGraph(data);
+						}
+				  });
+			}else{
+				var d = new Date();
+				var d2 = new Date();
+				 d2.setDate( d.getDate() -1 );
+				
+				var data = ' "192.168.1.34", "Canada", "21.1", "'+d2.toString()+'", "4", "155.180.1.21", "Germany", "42.53", "'+d.toString()+'", "4", "146.118.1.76", "Canada", "8.3", "'+d.toString()+'", "4", "127.128.1.34", "Canada", "5.3", "'+d2.toString()+'", "4", "165.168.1.32", "Germany", "42.53", "'+d.toString()+'", "4",  "11.168.1.32", "Argentina", "33", "'+d2.toString()+'", "4" , "162.168.1.34", "Germany", "11", "'+d.toString()+'", "4", "109.168.1.34", "Canada", "9.56", "", "4", "192.168.3.55", "Canada", "42.53", "'+d+'", "4", "192.168.1.34", "Germany", "42.53", "'+d2.toString()+'", "4", "137.122.1.39", "Argentina", "76", "'+d2.toString()+'", "4" , "180.168.2.88", "Argentina", "2.53", "'+d2.toString()+'", "4"';
+				LoadData(data);
+				LoadPlaytimeGraph(data);	
+			}
+		});
       }
 
       function LoadData(data){
         var users = JSON.parse('[' + data + ']');
-
+		
         var totalTime = 0, yesterdayTime = 0, totalPlayers = 0, yesterdayPlayers = 0, totalPlays = 0, yesterdayPlays = 0;
 		
           for(i = 5; i < users.length; i+=5){
