@@ -29,4 +29,4 @@ backoffice used for managing [Project Hedra](https://luaek.com/projecthedra)
 
 ## screenshots
 
-![](D:\Repositories\hedra-backoffice\images/img0.png)
+![](images/img0.png)
